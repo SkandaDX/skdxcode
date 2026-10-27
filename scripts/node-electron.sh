@@ -11,7 +11,7 @@ pushd $ROOT
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	NAME=`node -p "require('./product.json').nameLong"`
-	EXE_NAME=`node -p "require('./product.json').nameShort"`
+	EXE_NAME=`node -p "require('./product.json').applicationName"`
 	CODE="$ROOT/.build/electron/$NAME.app/Contents/MacOS/$EXE_NAME"
 else
 	NAME=`node -p "require('./product.json').applicationName"`

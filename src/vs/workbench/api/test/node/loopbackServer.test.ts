@@ -82,6 +82,15 @@ function appUriForAuthority(authority: string): URI {
 suite('LoopbackAuthServer - getHtml', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 
+	test('shows the current product name without upstream artwork', () => {
+		const html = render(URI.parse('skdx-code://dynamicauthprovider/redirect'), 'SKDX Code');
+		assert.deepStrictEqual({
+			showsProduct: html.includes('SKDX Code'),
+			linksToFork: html.includes('href="https://github.com/SkandaDX/skdxcode"'),
+			containsUpstreamArtwork: html.includes('data:image/'),
+		}, { showsProduct: true, linksToFork: true, containsUpstreamArtwork: false });
+	});
+
 	test('does not interpolate the app URI into the inline script', () => {
 		const appUri = appUriForAuthority('x\';alert(1)//@evil.example');
 

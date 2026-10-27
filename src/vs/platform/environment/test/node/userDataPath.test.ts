@@ -59,5 +59,20 @@ suite('User data path', () => {
 		}
 	});
 
+	test('development data stays separate from Code OSS and installed profiles', () => {
+		const origDev = process.env['VSCODE_DEV'];
+		try {
+			process.env['VSCODE_DEV'] = '1';
+			const path = getUserDataPath(parseArgs([], OPTIONS), product.nameShort);
+			assert.ok(path.endsWith('skdx-code-dev'));
+		} finally {
+			if (typeof origDev === 'string') {
+				process.env['VSCODE_DEV'] = origDev;
+			} else {
+				delete process.env['VSCODE_DEV'];
+			}
+		}
+	});
+
 	ensureNoDisposablesAreLeakedInTestSuite();
 });

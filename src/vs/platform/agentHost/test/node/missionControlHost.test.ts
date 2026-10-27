@@ -31,10 +31,10 @@ suite('Mission Control host integration', () => {
 	const store = ensureNoDisposablesAreLeakedInTestSuite();
 
 	for (const [quality, nameShort, expected] of [
-		['stable', 'Visual Studio Code', 'VS Code'],
-		['insider', 'Visual Studio Code - Insiders', 'VS Code Insiders'],
-		[undefined, 'Code - OSS', 'VS Code OSS'],
-		[undefined, 'Code - OSS Dev', 'VS Code OSS'],
+		['stable', 'SKDX Code', 'SKDX Code'],
+		['insider', 'SKDX Code', 'SKDX Code'],
+		[undefined, 'SKDX Code', 'SKDX Code'],
+		[undefined, 'SKDX Code Dev', 'SKDX Code Dev'],
 		['exploration', 'Code - Exploration', 'Code - Exploration'],
 	] as const) {
 		test(`uses a machine-first name with the ${nameShort} application in parentheses`, () => {
@@ -57,8 +57,9 @@ suite('Mission Control host integration', () => {
 	test('defaults to the owning machine hostname', () => {
 		const product = new class extends mock<IProductService>() {
 			override readonly quality = 'insider';
+			override readonly nameShort = 'SKDX Code';
 		}();
-		assert.strictEqual(getMissionControlEnvironmentName(product), `${hostname().replace(/\.local$/i, '')} (VS Code Insiders)`);
+		assert.strictEqual(getMissionControlEnvironmentName(product), `${hostname().replace(/\.local$/i, '')} (SKDX Code)`);
 	});
 
 	function createHost(instantiation = store.add(new TestInstantiationService())) {

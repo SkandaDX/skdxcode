@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../product/common/product.js';
+
 import * as cp from 'child_process';
 import { memoize } from '../../../base/common/decorators.js';
 import { FileAccess } from '../../../base/common/network.js';
@@ -15,7 +17,7 @@ import * as nls from '../../../nls.js';
 import { DEFAULT_TERMINAL_OSX, IExternalTerminalService, IExternalTerminalSettings, ITerminalForPlatform } from '../common/externalTerminal.js';
 import { ITerminalEnvironment } from '../../terminal/common/terminal.js';
 
-const TERMINAL_TITLE = nls.localize('console.title', "VS Code Console");
+const TERMINAL_TITLE = nls.localize('console.title', "{0} Console", product.nameShort);
 
 abstract class ExternalTerminalService {
 	public _serviceBrand: undefined;

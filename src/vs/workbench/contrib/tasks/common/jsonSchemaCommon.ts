@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import * as nls from '../../../../nls.js';
 import { IJSONSchema } from '../../../../base/common/jsonSchema.js';
 
@@ -191,7 +193,7 @@ const schema: IJSONSchema = {
 				},
 				promptOnClose: {
 					type: 'boolean',
-					description: nls.localize('JsonSchema.tasks.promptOnClose', 'Whether the user is prompted when VS Code closes with a running task.'),
+					description: nls.localize('JsonSchema.tasks.promptOnClose', "Whether the user is prompted when {0} closes with a running task.", product.nameShort),
 					default: false
 				},
 				isBuildCommand: {
@@ -245,7 +247,7 @@ const schema: IJSONSchema = {
 				},
 				promptOnClose: {
 					type: 'boolean',
-					description: nls.localize('JsonSchema.promptOnClose', 'Whether the user is prompted when VS Code closes with a running background task.'),
+					description: nls.localize('JsonSchema.promptOnClose', "Whether the user is prompted when {0} closes with a running background task.", product.nameShort),
 					default: false
 				},
 				echoCommand: {

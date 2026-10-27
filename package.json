@@ -97,7 +97,11 @@
     "symlink-local-component-explorer": "npm install ../vscode-packages/js-component-explorer/packages/explorer ../vscode-packages/js-component-explorer/packages/cli --no-save && cd build/rspack && npm install ../../../vscode-packages/js-component-explorer/packages/webpack-plugin ../../../vscode-packages/js-component-explorer/packages/explorer --no-save && cd ../vite && npm install ../../../vscode-packages/js-component-explorer/packages/vite-plugin ../../../vscode-packages/js-component-explorer/packages/explorer --no-save",
     "install-latest-component-explorer": "npm install @vscode/component-explorer@next @vscode/component-explorer-cli@next && cd build/rspack && npm install @vscode/component-explorer-webpack-plugin@next @vscode/component-explorer@next && cd ../vite && npm install @vscode/component-explorer-vite-plugin@next @vscode/component-explorer@next",
     "setup-feed": "npm install --global @microsoft/artifacts-npm-credprovider --registry https://pkgs.dev.azure.com/artifacts-public/PublicTools/_packaging/AzureArtifacts/npm/registry/ && npm config set registry https://pkgs.dev.azure.com/monacotools/Monaco/_packaging/vscode/npm/registry/",
-    "reauth-feed": "artifacts-npm-credprovider --force"
+    "reauth-feed": "artifacts-npm-credprovider --force",
+    "generate-branding": "node build/generate-skdx-assets.ts",
+    "check-branding": "node build/generate-skdx-assets.ts --check",
+    "preelectron": "npm run check-branding",
+    "pregulp": "npm run check-branding"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
@@ -287,10 +291,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/vscode.git"
+    "url": "https://github.com/SkandaDX/skdxcode.git"
   },
   "bugs": {
-    "url": "https://github.com/microsoft/vscode/issues"
+    "url": "https://github.com/SkandaDX/skdxcode/issues"
   },
   "optionalDependencies": {
     "windows-foreground-love": "0.6.1"

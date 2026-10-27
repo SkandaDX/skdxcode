@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { Sequencer } from '../../../../../base/common/async.js';
 import { VSBuffer } from '../../../../../base/common/buffer.js';
 import { toErrorMessage } from '../../../../../base/common/errorMessage.js';
@@ -372,7 +374,7 @@ export class ChatSessionStore extends Disposable {
 							this.dialogService.prompt({
 								custom: true, // so text is copyable
 								title: localize('chatSessionStore.serializationError', 'Error saving chat session'),
-								message: localize('chatSessionStore.writeError', 'Error serializing chat session for storage. The session will be lost if the window is closed. Please report this issue to the VS Code team:\n\n{0}', e.stack || toErrorMessage(e)),
+								message: localize('chatSessionStore.writeError', "Error serializing chat session for storage. The session will be lost if the window is closed. Please report this issue to the {1} team:\n\n{0}", e.stack || toErrorMessage(e), product.nameShort),
 								buttons: [
 									{ label: localize('reportIssue', 'Report Issue'), run: () => this.openerService.open('https://github.com/microsoft/vscode/issues/new?template=bug_report.md') }
 								]

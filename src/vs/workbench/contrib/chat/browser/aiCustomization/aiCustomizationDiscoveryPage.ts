@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import './media/aiCustomizationDiscovery.css';
 import * as DOM from '../../../../../base/browser/dom.js';
 import { renderFormattedText } from '../../../../../base/browser/formattedTextRenderer.js';
@@ -197,11 +199,11 @@ function getSectionForCatalogType(type: 'skill' | 'mcp' | 'plugin'): AICustomiza
 
 function getSourceLabel(item: IAICustomizationListItem): string | undefined {
 	if (item.isBuiltin) {
-		return localize('customizationDiscovery.vsCodeSource', "VS Code");
+		return localize('customizationDiscovery.vsCodeSource', "{0}", product.nameShort);
 	}
 	switch (item.source) {
 		case 'extension': return item.extensionId;
-		case 'builtin': return localize('customizationDiscovery.vsCodeSource', "VS Code");
+		case 'builtin': return localize('customizationDiscovery.vsCodeSource', "{0}", product.nameShort);
 		default: return undefined;
 	}
 }

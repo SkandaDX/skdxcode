@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import * as DOM from '../../../../../base/browser/dom.js';
 import { DomScrollableElement } from '../../../../../base/browser/ui/scrollbar/scrollableElement.js';
 import { BreadcrumbsWidget } from '../../../../../base/browser/ui/breadcrumbs/breadcrumbsWidget.js';
@@ -715,8 +717,8 @@ export class ChatDebugWireLogView extends Disposable {
 		const dirIcon = outbound ? Codicon.arrowRight : Codicon.arrowLeft;
 		const dirEl = DOM.append(header, $(`span.chat-debug-wirelog-dir${ThemeIcon.asCSSSelector(dirIcon)}`));
 		dirEl.title = outbound
-			? localize('chatDebug.wireLog.outbound', "VS Code → Agent Host")
-			: localize('chatDebug.wireLog.inbound', "Agent Host → VS Code");
+			? localize('chatDebug.wireLog.outbound', "{0} → Agent Host", product.nameShort)
+			: localize('chatDebug.wireLog.inbound', "Agent Host → {0}", product.nameShort);
 
 		// Method / response label.
 		const label = frame.method ?? localize('chatDebug.wireLog.responseLabel', "(response)");

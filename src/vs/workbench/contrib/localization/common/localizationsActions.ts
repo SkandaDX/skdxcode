@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import { localize, localize2 } from '../../../../nls.js';
 import { IQuickInputService, IQuickPickSeparator } from '../../../../platform/quickinput/common/quickInput.js';
 import { DisposableStore } from '../../../../base/common/lifecycle.js';
@@ -23,7 +25,7 @@ export class ConfigureDisplayLanguageAction extends Action2 {
 				id: MenuId.CommandPalette
 			},
 			metadata: {
-				description: localize2('configureLocaleDescription', "Changes the locale of VS Code based on installed language packs. Common languages include French, Chinese, Spanish, Japanese, German, Korean, and more.")
+				description: localize2('configureLocaleDescription', "Changes the locale of {0} based on installed language packs. Common languages include French, Chinese, Spanish, Japanese, German, Korean, and more.", product.nameShort)
 			}
 		});
 	}

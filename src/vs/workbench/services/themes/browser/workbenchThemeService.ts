@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import * as nls from '../../../../nls.js';
 import * as types from '../../../../base/common/types.js';
 import { IExtensionService } from '../../extensions/common/extensions.js';
@@ -281,7 +283,7 @@ export class WorkbenchThemeService extends Disposable implements IWorkbenchTheme
 		const keepTheme = await new Promise(resolve => {
 			this.notificationService.prompt(
 				Severity.Info,
-				nls.localize({ key: 'themeUpdatedNotification', comment: ['{0} is the name of the new default theme'] }, "VS Code has a new default theme: '{0}'.", this.getColorTheme().label),
+				nls.localize({ key: 'themeUpdatedNotification', comment: ['{0} is the name of the new default theme'] }, "{1} has a new default theme: '{0}'.", this.getColorTheme().label, product.nameShort),
 				[
 					toAction({
 						id: 'themeUpdated.tryItOut',

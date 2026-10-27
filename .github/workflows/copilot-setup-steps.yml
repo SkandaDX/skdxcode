@@ -9,7 +9,7 @@ on:
       - .github/workflows/copilot-setup-steps.yml
   pull_request:
     branches:
-      - main
+      - skdx
       - 'release/*'
     paths:
       - .github/workflows/copilot-setup-steps.yml
@@ -28,7 +28,7 @@ jobs:
     # You can define any steps you want, and they will run before the agent starts.
     # If you do not check out your code, Copilot will do this for you.
     steps:
-      - name: Checkout microsoft/vscode
+      - name: Checkout SKDX Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup Node.js

@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { Limiter } from '../../../../../base/common/async.js';
 import { cancelOnDispose, CancellationToken, CancellationTokenSource } from '../../../../../base/common/cancellation.js';
 import { CancellationError, getErrorMessage } from '../../../../../base/common/errors.js';
@@ -642,7 +644,7 @@ export class CustomizationMarketplaceInstallService extends Disposable implement
 		const source = resource.installation;
 		if (source?.kind === 'configuredPlugin') {
 			if (isWeb) {
-				return { kind: 'unavailable', message: localize('customizationMarketplace.pluginWebUnsupported', "Installing configured marketplace plugins is not available in VS Code for the Web.") };
+				return { kind: 'unavailable', message: localize('customizationMarketplace.pluginWebUnsupported', "Installing configured marketplace plugins is not available in {0} for the Web.", product.nameShort) };
 			}
 			if (!this.configurationService.getValue<boolean>(ChatConfiguration.PluginsEnabled)) {
 				return { kind: 'unavailable', message: localize('customizationMarketplace.pluginsDisabled', "Enable agent plugins to install this resource.") };
@@ -653,7 +655,7 @@ export class CustomizationMarketplaceInstallService extends Disposable implement
 			return {
 				kind: 'unavailable',
 				message: resource.mediaType === CustomizationMarketplaceMediaType.CursorPlugin
-					? localize('customizationMarketplace.cursorUnsupported', "Cursor plugins cannot be installed in VS Code. Open the resource to view its installation instructions.")
+					? localize('customizationMarketplace.cursorUnsupported', "Cursor plugins cannot be installed in {0}. Open the resource to view its installation instructions.", product.nameShort)
 					: localize('customizationMarketplace.sourceUnavailable', "This resource does not provide a supported installation source."),
 			};
 		}

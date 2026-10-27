@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import './media/workspaceTrustEditor.css';
 import { SyncDescriptor } from '../../../../platform/instantiation/common/descriptors.js';
 import { Disposable, MutableDisposable } from '../../../../base/common/lifecycle.js';
@@ -799,7 +801,7 @@ Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration)
 			[WORKSPACE_TRUST_ENABLED]: {
 				type: 'boolean',
 				default: true,
-				description: localize('workspace.trust.description', "Controls whether or not Workspace Trust is enabled within VS Code."),
+				description: localize('workspace.trust.description', "Controls whether or not Workspace Trust is enabled within {0}.", product.nameShort),
 				tags: [WORKSPACE_TRUST_SETTING_TAG],
 				scope: ConfigurationScope.APPLICATION,
 			},
@@ -845,7 +847,7 @@ Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration)
 			[WORKSPACE_TRUST_EMPTY_WINDOW]: {
 				type: 'boolean',
 				default: true,
-				markdownDescription: localize('workspace.trust.emptyWindow.description', "Controls whether or not the empty window is trusted by default within VS Code. When used with `#{0}#`, you can enable the full functionality of VS Code without prompting in an empty window.", WORKSPACE_TRUST_UNTRUSTED_FILES),
+				markdownDescription: localize('workspace.trust.emptyWindow.description', "Controls whether or not the empty window is trusted by default within {1}. When used with `#{0}#`, you can enable the full functionality of {1} without prompting in an empty window.", WORKSPACE_TRUST_UNTRUSTED_FILES, product.nameShort),
 				tags: [WORKSPACE_TRUST_SETTING_TAG],
 				scope: ConfigurationScope.APPLICATION
 			}

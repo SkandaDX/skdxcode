@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../platform/product/common/product.js';
+
 import './media/sessionsSetUp.css';
 import { Button } from '../../base/browser/ui/button/button.js';
 import { Dialog, DialogContentsAlignment } from '../../base/browser/ui/dialog/dialog.js';
@@ -33,7 +35,7 @@ export function createSessionsSignInDialogOptions(
 		allowContinueWithoutSignIn,
 		renderDialogFooter: showReturnToVSCodeEditor ? (footer: HTMLElement) => createDialogAction(
 			footer,
-			localize('sessions.returnToVSCodeEditor', "Return to VS Code Editor"),
+			localize('sessions.returnToVSCodeEditor', "Return to {0} Editor", product.nameShort),
 			() => {
 				void commandService.executeCommand<void>(RETURN_TO_VSCODE_EDITOR_COMMAND_ID).catch(onUnexpectedError);
 			}

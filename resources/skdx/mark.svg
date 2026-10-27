@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="SkandaDX">
+  <!-- The same S, K, D and X as the wide mark — same chamfered S, same
+       proportions — overlapped into a square and reduced to their key strokes.
+       The spears and diamond spines are deliberately dropped: at 16px that
+       detail collapses into a smudge, and only the bare strokes still read as
+       SKDX. Ink follows the browser's own colour-scheme because a favicon
+       really does sit on browser chrome. -->
+  <style>
+    .ink { stroke: #15171b }
+    @media (prefers-color-scheme: dark) { .ink { stroke: #e8e7e1 } }
+  </style>
+  <g class="ink" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(-1.02 4.56) scale(0.62)">
+      <polyline points="14,3 6,3 4,5 4,9 6,11 12,11 14,13 14,19 12,21 4,21"/>
+      <polyline points="11,3 11,21"/>
+      <polyline points="21,3 11,12 21,21"/>
+      <polyline points="18,21 18,3 25,3 30,8 30,16 25,21 18,21"/>
+      <polyline points="26,3 38,21"/>
+      <polyline points="38,3 26,21"/>
+    </g>
+  </g>
+</svg>

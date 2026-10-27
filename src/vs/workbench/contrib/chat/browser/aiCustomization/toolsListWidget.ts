@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import * as DOM from '../../../../../base/browser/dom.js';
 import { Button } from '../../../../../base/browser/ui/button/button.js';
 import { HighlightedLabel } from '../../../../../base/browser/ui/highlightedlabel/highlightedLabel.js';
@@ -925,7 +927,7 @@ export class ToolsListWidget extends Disposable {
 			this._createTreeGroup(
 				'builtin',
 				localize('builtInToolsSection', "Built-in Tools"),
-				localize('builtInToolsSectionDescription', "Tools provided by the active agent and VS Code."),
+				localize('builtInToolsSectionDescription', "Tools provided by the active agent and {0}.", product.nameShort),
 				localize('builtInToolsSectionEmpty', "No built-in tool sets are available."),
 				this._currentModel.filter(vm => vm.toolSet.source.type === 'internal' || vm.toolSet.source.type === 'external'),
 			),

@@ -20,6 +20,9 @@ import { getUNCHost, addUNCHostToAllowlist } from './vs/base/node/unc.js';
 import { INLSConfiguration } from './vs/nls.js';
 import { NativeParsedArgs } from './vs/platform/environment/common/argv.js';
 
+// Keep native menus and credential-store identity separate from the executable filename.
+app.setName(process.env['VSCODE_DEV'] ? `${product.nameShort} Dev` : product.nameShort!);
+
 perf.mark('code/didStartMain');
 
 perf.mark('code/willLoadMainBundle', {

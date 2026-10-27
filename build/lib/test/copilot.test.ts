@@ -10,6 +10,8 @@ import * as os from 'os';
 import * as path from 'path';
 import { suite, test } from 'node:test';
 import { create } from 'tar';
+import File from 'vinyl';
+import { cleanNodeModules } from '../util.ts';
 import { copilotPlatforms, ensureCopilotPlatformPackage, getCopilotExcludeFilter, getCopilotRuntimePrebuildFiles, getCopilotRuntimeVersion, getMxcExcludeFilter, prepareBuiltInCopilotRipgrepShim } from '../copilot.ts';
 
 /**
@@ -32,6 +34,22 @@ function createPinnedCopilotWin32Tarball(dir: string): { tarball: string; integr
 }
 
 suite('copilot', () => {
+	test('module pruning retains the built-in extension SDK required by packaging', async () => {
+		const stream = cleanNodeModules(path.resolve(import.meta.dirname, '../../.moduleignore'));
+		const files: string[] = [];
+		stream.on('data', (file: File) => files.push(file.relative));
+		const done = new Promise<void>((resolve, reject) => {
+			stream.on('end', resolve);
+			stream.on('error', reject);
+		});
+		for (const file of ['sdk/index.js', 'package.json', 'LICENSE.md', 'npm-loader.js']) {
+			stream.write(new File({ cwd: '/', base: '/', path: `/extensions/copilot/node_modules/@github/copilot/${file}`, contents: Buffer.from('fixture') }));
+		}
+		stream.end();
+		await done;
+		assert.deepStrictEqual(files.sort(), ['LICENSE.md', 'package.json', 'sdk/index.js'].map(file => `extensions/copilot/node_modules/@github/copilot/${file}`).sort());
+	});
+
 	test('reads the runtime version owned by the SDK', () => {
 		const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'vscode-copilot-version-test-'));
 		try {

@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { $, addDisposableListener, EventType, getWindow } from '../../../../../base/browser/dom.js';
 import { ActionBar } from '../../../../../base/browser/ui/actionbar/actionbar.js';
 import { IHoverDelegate } from '../../../../../base/browser/ui/hover/hoverDelegate.js';
@@ -871,7 +873,7 @@ class SetBrowserUserAgentAction extends Action2 {
 		}
 		const quickInputService = accessor.get(IQuickInputService);
 		const value = await quickInputService.input({
-			prompt: localize('browser.userAgent.prompt', "User agent string (leave empty for VS Code default)"),
+			prompt: localize('browser.userAgent.prompt', "User agent string (leave empty for {0} default)", product.nameShort),
 			value: support.userAgent ?? '',
 		});
 		if (value === undefined) {

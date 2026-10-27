@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { Codicon } from '../../../../../base/common/codicons.js';
 import { Disposable, DisposableStore, IDisposable, toDisposable } from '../../../../../base/common/lifecycle.js';
 import { ThemeIcon } from '../../../../../base/common/themables.js';
@@ -95,8 +97,8 @@ export class ClientToolSetsContribution extends Disposable implements IWorkbench
 			id: 'vscode-general',
 			referenceName: 'vscodeGeneral',
 			icon: Codicon.vscode,
-			description: localize('clientToolSet.vscode.description', "VS Code"),
-			detail: localize('clientToolSet.vscode.detail', "Navigate code, manage extensions, and run built-in VS Code commands."),
+			description: localize('clientToolSet.vscode.description', "{0}", product.nameShort),
+			detail: localize('clientToolSet.vscode.detail', "Navigate code, manage extensions, and run built-in {0} commands.", product.nameShort),
 			members: [
 				...(workspaceService.isSessionsWindow ? [] : ['runTests', 'testFailure', 'rename', 'usages']),
 				'toolSearch',

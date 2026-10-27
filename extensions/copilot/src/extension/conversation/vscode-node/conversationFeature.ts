@@ -347,7 +347,7 @@ export class ConversationFeature implements IExtensionContribution {
 			}),
 			this.instantiationService.invokeFunction(registerInlineChatCommands),
 			this.registerTerminalQuickFixProviders(),
-			registerNewWorkspaceIntentCommand(this.newWorkspacePreviewContentManager, this.logService, options),
+			registerNewWorkspaceIntentCommand(this.newWorkspacePreviewContentManager, this.logService, options, this.extensionContext.globalStorageUri),
 			registerGitHubPullRequestTitleAndDescriptionProvider(this.instantiationService),
 			registerSearchIntentCommand(),
 		].forEach(d => disposables.add(d));

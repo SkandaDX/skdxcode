@@ -65,7 +65,7 @@ function getExePath(buildPath) {
 	switch (process.platform) {
 		case 'darwin': {
 			const product = require(path.join(buildPath, 'Contents', 'Resources', 'app', 'product.json'));
-			relativeExePath = path.join('Contents', 'MacOS', product.nameShort);
+			relativeExePath = path.join('Contents', 'MacOS', product.applicationName);
 			if (!fs.existsSync(path.join(buildPath, relativeExePath))) {
 				relativeExePath = path.join('Contents', 'MacOS', 'Electron');
 			}
@@ -78,7 +78,7 @@ function getExePath(buildPath) {
 		}
 		case 'win32': {
 			const product = require(path.join(buildPath, 'resources', 'app', 'product.json'));
-			relativeExePath = `${product.nameShort}.exe`;
+			relativeExePath = `${product.applicationName}.exe`;
 			break;
 		}
 		default:

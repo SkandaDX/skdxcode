@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { renderAsPlaintext } from '../../../../../base/browser/markdownRenderer.js';
 import { assertNever } from '../../../../../base/common/assert.js';
 import { RunOnceScheduler, timeout } from '../../../../../base/common/async.js';
@@ -199,7 +201,7 @@ export class LanguageModelToolsService extends Disposable implements ILanguageMo
 			VSCodeToolReference.vscode,
 			{
 				icon: ThemeIcon.fromId(Codicon.vscode.id),
-				description: localize('copilot.toolSet.vscode.description', 'Use VS Code features'),
+				description: localize('copilot.toolSet.vscode.description', "Use {0} features", product.nameShort),
 				deprecated: true,
 			}
 		));

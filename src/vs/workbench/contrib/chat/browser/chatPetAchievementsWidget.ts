@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import './media/chatPetAchievements.css';
 import * as DOM from '../../../../base/browser/dom.js';
 import { status } from '../../../../base/browser/ui/aria/aria.js';
@@ -251,7 +253,7 @@ export class ChatPetAchievementsWidget extends Disposable {
 		}
 
 		const experimentalNote = DOM.append(inner, DOM.$('p.chat-pet-achievements-experimental'));
-		experimentalNote.textContent = localize('chatPet.achievements.experimental', "The VS Code pet and achievements are experimental. Features and rewards may change.");
+		experimentalNote.textContent = localize('chatPet.achievements.experimental', "The {0} pet and achievements are experimental. Features and rewards may change.", product.nameShort);
 
 		this.scrollable.scanDomNode();
 		this.layout(this.lastDimension);
@@ -284,8 +286,8 @@ export class ChatPetAchievementsWidget extends Disposable {
 		}
 		this.chatPetService.setAccessory(accessoryId);
 		status(accessoryId === undefined
-			? localize('chatPet.achievements.hatRemoved', "VS Code pet hat removed")
-			: localize('chatPet.achievements.hatSelected', "VS Code pet is now wearing {0}", getChatPetAccessory(accessoryId).label));
+			? localize('chatPet.achievements.hatRemoved', "{0} pet hat removed", product.nameShort)
+			: localize('chatPet.achievements.hatSelected', "{1} pet is now wearing {0}", getChatPetAccessory(accessoryId).label, product.nameShort));
 	}
 
 	private updateSelectedAccessory(accessoryId: ChatPetAccessoryId | undefined): void {

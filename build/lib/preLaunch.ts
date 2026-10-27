@@ -51,6 +51,11 @@ async function isExpectedElectronInstalled(): Promise<boolean> {
 		const { getElectronVersion } = await import('./electronVersion.ts');
 		const { electronVersion } = getElectronVersion();
 		const installedVersion = (await fs.readFile(path.join(rootDir, '.build', 'electron', 'version'), 'utf8')).trim().replace(/^v/, '');
+		const product = JSON.parse(await fs.readFile(path.join(rootDir, 'product.json'), 'utf8'));
+		const executable = process.platform === 'darwin'
+			? path.join(`${product.nameLong}.app`, 'Contents', 'MacOS', product.applicationName)
+			: process.platform === 'win32' ? `${product.applicationName}.exe` : product.applicationName;
+		await fs.access(path.join(rootDir, '.build', 'electron', executable));
 		return installedVersion === electronVersion;
 	} catch {
 		return false;

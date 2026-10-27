@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78 24" width="78" height="24" role="img" aria-label="SkandaDX">
+  <!-- SKDX as vel spears on a key stroke. Static fallback for social cards and
+       anywhere the React component cannot run; the live site inlines
+       src/components/Logo.tsx so the mark can take the accent custom property.
+       Fixed ink on purpose: a standalone SVG follows the viewer's OS colour
+       setting rather than the background it sits on, so an adaptive fill would
+       vanish on a light social card whenever the viewer is in dark mode. -->
+  <defs>
+    <mask id="skdx" maskUnits="userSpaceOnUse" x="0" y="0" width="78" height="24">
+      <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="14,3 6,3 4,5 4,9 6,11 12,11 14,13 14,19 12,21 4,21" />
+          <polyline points="24,3 24,21" />
+          <polyline points="34,3 24,12 34,21" />
+          <polyline points="44,21 44,3 51,3 56,8 56,16 51,21 44,21" />
+          <polyline points="65,3 77,21" />
+          <polyline points="77,3 65,21" />
+      </g>
+      <g fill="#fff">
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(14 3) rotate(270)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(8.8 3) rotate(270)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(4.3 4.7) rotate(225)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(4.55 9.55) rotate(135)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(9.14 11) rotate(90)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(13.66 12.66) rotate(135)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(14 17.71) rotate(180)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(10.91 21) rotate(270)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(5.71 21) rotate(270)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(24 3) rotate(180)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(24 8.2) rotate(180)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(24 13.4) rotate(180)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(24 18.6) rotate(180)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(34 3) rotate(228.01)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(30.13 6.48) rotate(228.01)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(26.27 9.96) rotate(228.01)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(25.6 13.44) rotate(131.99)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(29.46 16.91) rotate(131.99)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(33.33 20.39) rotate(131.99)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(44 21) rotate(0)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(44 15.8) rotate(0)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(44 10.6) rotate(0)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(44 5.4) rotate(0)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(46.8 3) rotate(90)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(51.71 3.71) rotate(135)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(55.38 7.38) rotate(135)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(56 12.33) rotate(180)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(54.92 17.08) rotate(225)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(51.24 20.76) rotate(225)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(46.14 21) rotate(270)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(65 3) rotate(146.31)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(67.88 7.33) rotate(146.31)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(70.77 11.65) rotate(146.31)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(73.65 15.98) rotate(146.31)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(76.54 20.31) rotate(146.31)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(77 3) rotate(213.69)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(74.12 7.33) rotate(213.69)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(71.23 11.65) rotate(213.69)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(68.35 15.98) rotate(213.69)" />
+          <path d="M-0.75 0 L0.75 0 C1.8 -1.04 1.62 -2.91 0 -5.2 C-1.62 -2.91 -1.8 -1.04 -0.75 0Z" transform="translate(65.46 20.31) rotate(213.69)" />
+      </g>
+      <g fill="#000">
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(14 3) rotate(270)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(8.8 3) rotate(270)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(4.3 4.7) rotate(225)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(4.55 9.55) rotate(135)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(9.14 11) rotate(90)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(13.66 12.66) rotate(135)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(14 17.71) rotate(180)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(10.91 21) rotate(270)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(5.71 21) rotate(270)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(24 3) rotate(180)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(24 8.2) rotate(180)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(24 13.4) rotate(180)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(24 18.6) rotate(180)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(34 3) rotate(228.01)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(30.13 6.48) rotate(228.01)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(26.27 9.96) rotate(228.01)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(25.6 13.44) rotate(131.99)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(29.46 16.91) rotate(131.99)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(33.33 20.39) rotate(131.99)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(44 21) rotate(0)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(44 15.8) rotate(0)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(44 10.6) rotate(0)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(44 5.4) rotate(0)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(46.8 3) rotate(90)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(51.71 3.71) rotate(135)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(55.38 7.38) rotate(135)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(56 12.33) rotate(180)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(54.92 17.08) rotate(225)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(51.24 20.76) rotate(225)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(46.14 21) rotate(270)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(65 3) rotate(146.31)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(67.88 7.33) rotate(146.31)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(70.77 11.65) rotate(146.31)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(73.65 15.98) rotate(146.31)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(76.54 20.31) rotate(146.31)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(77 3) rotate(213.69)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(74.12 7.33) rotate(213.69)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(71.23 11.65) rotate(213.69)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(68.35 15.98) rotate(213.69)" />
+          <path d="M0 -0.21 L0.9 -1.46 L0 -4.26 L-0.9 -1.46Z" transform="translate(65.46 20.31) rotate(213.69)" />
+      </g>
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="78" height="24" fill="#15171b" mask="url(#skdx)"/>
+</svg>

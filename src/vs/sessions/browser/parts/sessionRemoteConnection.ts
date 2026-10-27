@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../platform/product/common/product.js';
+
 import { TimeoutTimer } from '../../../base/common/async.js';
 import { Codicon } from '../../../base/common/codicons.js';
 import { onUnexpectedError } from '../../../base/common/errors.js';
@@ -309,7 +311,7 @@ export class SessionRemoteConnection extends Disposable {
 			reconnecting: localize('sessionRemoteHost.reconnecting', "Reconnecting to {0}...", hostLabel),
 			reconnectingIn: seconds => localize('sessionRemoteHost.reconnectingIn', "Reconnecting to {0} in {1}s", hostLabel, seconds),
 			incompatibleTitle: localize('sessionRemoteHost.incompatibleTitle', "Cannot Connect to {0}", hostLabel),
-			incompatible: localize('sessionRemoteHost.incompatibleDescription', "{0} is incompatible with this version of Visual Studio Code.", hostLabel),
+			incompatible: localize('sessionRemoteHost.incompatibleDescription', "{0} is incompatible with this version of {1}.", hostLabel, product.nameShort),
 		};
 	}
 

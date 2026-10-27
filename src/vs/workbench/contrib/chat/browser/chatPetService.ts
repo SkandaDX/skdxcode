@@ -34,7 +34,7 @@ const CHAT_PET_HORIZONTAL_POSITION_STORAGE_KEY = 'chat.vscodePet.horizontalPosit
 export const CHAT_PET_DEFAULT_SCALE = 1;
 
 export const ChatPetContextKeys = {
-	enabled: new RawContextKey<boolean>('chatPetEnabled', false, localize('chatPet.context.enabled', "Whether the VS Code pet is enabled")),
+	enabled: new RawContextKey<boolean>('chatPetEnabled', false, localize('chatPet.context.enabled', "Whether the {0} pet is enabled", product.nameShort)),
 };
 
 type ChatPetEnablementEvent = {
@@ -179,8 +179,8 @@ export class ChatPetService extends Disposable implements IChatPetService {
 		this._setEnabled(enabled);
 		this.storageService.store(CHAT_PET_ENABLED_STORAGE_KEY, enabled, StorageScope.APPLICATION, StorageTarget.USER);
 		status(enabled
-			? localize('chatPet.enabled', "VS Code pet enabled. Click the pet to interact with it, or use the Left and Right Arrow keys to move it.")
-			: localize('chatPet.disabled', "VS Code pet disabled"));
+			? localize('chatPet.enabled', "{0} pet enabled. Click the pet to interact with it, or use the Left and Right Arrow keys to move it.", product.nameShort)
+			: localize('chatPet.disabled', "{0} pet disabled", product.nameShort));
 		return enabled;
 	}
 
@@ -232,8 +232,8 @@ export class ChatPetService extends Disposable implements IChatPetService {
 		this._onTheRun.set(onTheRun, undefined);
 		this.storageService.store(CHAT_PET_ON_THE_RUN_STORAGE_KEY, onTheRun, StorageScope.APPLICATION, StorageTarget.USER);
 		status(onTheRun
-			? localize('chatPet.onTheRun', "The VS Code pet is on the run. Click the pet to bring it back.")
-			: localize('chatPet.restored', "The VS Code pet is back"));
+			? localize('chatPet.onTheRun', "The {0} pet is on the run. Click the pet to bring it back.", product.nameShort)
+			: localize('chatPet.restored', "The {0} pet is back", product.nameShort));
 	}
 
 	setScale(scale: number): void {

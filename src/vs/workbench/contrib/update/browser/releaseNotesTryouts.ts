@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import { $ } from '../../../../base/browser/dom.js';
 import { CancellationTokenSource } from '../../../../base/common/cancellation.js';
 import { isCancellationError } from '../../../../base/common/errors.js';
@@ -126,7 +128,7 @@ export class ReleaseNotesTryouts extends Disposable {
 				continue;
 			}
 			if (!this._tryoutService.getTryout(id)) {
-				this.replaceInvalidLink(link, localize('releaseNotes.tryout.unknown', "This example is not available in this version of VS Code."));
+				this.replaceInvalidLink(link, localize('releaseNotes.tryout.unknown', "This example is not available in this version of {0}.", product.nameShort));
 				continue;
 			}
 
@@ -157,7 +159,7 @@ export class ReleaseNotesTryouts extends Disposable {
 		const metadata = this._tryoutService.getTryout(id)?.tryout;
 		const availability = metadata ? this.getAvailability(id) : {
 			kind: 'unavailable' as const,
-			message: localize('releaseNotes.tryout.unknown', "This example is not available in this version of VS Code."),
+			message: localize('releaseNotes.tryout.unknown', "This example is not available in this version of {0}.", product.nameShort),
 		};
 		const empty = { id, index, label: '', ariaLabel: '', href: '', message: '', setupLabel: '', setupAriaLabel: '' };
 		if (availability.kind === 'hidden') {
@@ -255,7 +257,7 @@ export class ReleaseNotesTryouts extends Disposable {
 			if (!availability || availability.kind !== 'ready' && (action !== 'setup' || availability.kind !== 'unavailable' || !availability.action)) {
 				this.update();
 				if (availability?.kind !== 'hidden') {
-					this._notificationService.warn(availability?.kind === 'unavailable' ? availability.message : localize('releaseNotes.tryout.unknown', "This example is not available in this version of VS Code."));
+					this._notificationService.warn(availability?.kind === 'unavailable' ? availability.message : localize('releaseNotes.tryout.unknown', "This example is not available in this version of {0}.", product.nameShort));
 				}
 				this.restoreFocus(index, action);
 				return;

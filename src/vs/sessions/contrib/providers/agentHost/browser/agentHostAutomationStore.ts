@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { disposableTimeout, raceCancellationError } from '../../../../../base/common/async.js';
 import { CancellationToken } from '../../../../../base/common/cancellation.js';
 import { CancellationError } from '../../../../../base/common/errors.js';
@@ -218,7 +220,7 @@ export class AgentHostAutomationStore extends Disposable implements ISessionsPro
 					id: plugin.id,
 					label: this._customizationLabel(plugin),
 					description: URI.parse(plugin.uri).scheme === SYNCED_CUSTOMIZATION_SCHEME
-						? localize('agentHostAutomation.syncedCustomizationDescription', "Customizations synced from VS Code.")
+						? localize('agentHostAutomation.syncedCustomizationDescription', "Customizations synced from {0}.", product.nameShort)
 						: plugin.version ? localize('agentHostAutomation.customizationVersion', "Version {0}", plugin.version) : undefined,
 					selected: !sameTarget || saved.has(plugin.id),
 					outdated: sameTarget && saved.has(plugin.id)
@@ -240,7 +242,7 @@ export class AgentHostAutomationStore extends Disposable implements ISessionsPro
 	private _customizationLabel(plugin: ClientPluginCustomization): string {
 		const uri = URI.parse(plugin.uri);
 		return uri.scheme === SYNCED_CUSTOMIZATION_SCHEME
-			? localize('agentHostAutomation.syncedCustomizations', "VS Code Customizations")
+			? localize('agentHostAutomation.syncedCustomizations', "{0} Customizations", product.nameShort)
 			: plugin.name || basename(uri);
 	}
 

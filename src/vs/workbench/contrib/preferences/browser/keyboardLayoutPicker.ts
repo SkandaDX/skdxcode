@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import * as nls from '../../../../nls.js';
 import { StatusbarAlignment, IStatusbarService, IStatusbarEntryAccessor } from '../../../services/statusbar/browser/statusbar.js';
 import { Disposable, MutableDisposable } from '../../../../base/common/lifecycle.js';
@@ -93,8 +95,8 @@ interface IUnknownLayout {
 }
 
 const DEFAULT_CONTENT: string = [
-	`// ${nls.localize('displayLanguage', 'Defines the keyboard layout used in VS Code in the browser environment.')}`,
-	`// ${nls.localize('doc', 'Open VS Code and run "Developer: Inspect Key Mappings (JSON)" from Command Palette.')}`,
+	`// ${nls.localize('displayLanguage', "Defines the keyboard layout used in {0} in the browser environment.", product.nameShort)}`,
+	`// ${nls.localize('doc', "Open {0} and run \"Developer: Inspect Key Mappings (JSON)\" from Command Palette.", product.nameShort)}`,
 	``,
 	`// Once you have the keyboard layout info, please paste it below.`,
 	'\n'

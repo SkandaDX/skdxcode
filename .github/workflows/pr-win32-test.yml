@@ -33,7 +33,7 @@ jobs:
       VSCODE_ARCH: x64
       VSCODE_SKIP_PRELAUNCH: '1'
     steps:
-      - name: Checkout microsoft/vscode
+      - name: Checkout SKDX Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           lfs: true

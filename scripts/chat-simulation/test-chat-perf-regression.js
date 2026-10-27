@@ -219,11 +219,11 @@ function buildProductionBuild() {
 	/** @type {string} */
 	let electronPath;
 	if (platform === 'darwin') {
-		electronPath = path.join(destDir, `${product.nameLong}.app`, 'Contents', 'MacOS', product.nameShort);
+		electronPath = path.join(destDir, `${product.nameLong}.app`, 'Contents', 'MacOS', product.applicationName);
 	} else if (platform === 'linux') {
 		electronPath = path.join(destDir, product.applicationName);
 	} else {
-		electronPath = path.join(destDir, `${product.nameShort}.exe`);
+		electronPath = path.join(destDir, `${product.applicationName}.exe`);
 	}
 
 	if (!fs.existsSync(electronPath)) {

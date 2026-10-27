@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import { timeout } from '../../../../base/common/async.js';
 import { MarkdownString, isMarkdownString } from '../../../../base/common/htmlContent.js';
 import { Disposable, DisposableMap, DisposableStore, MutableDisposable } from '../../../../base/common/lifecycle.js';
@@ -71,7 +73,7 @@ export class ChatSlashCommandsContribution extends Disposable {
 
 		this._store.add(slashCommandService.registerSlashCommand({
 			command: 'vscode-pet',
-			detail: nls.localize('vscodePet', "Toggle an interactive VS Code pet (Experimental)"),
+			detail: nls.localize('vscodePet', "Toggle an interactive {0} pet (Experimental)", product.nameShort),
 			sortText: 'z3_vscodePet',
 			executeImmediately: true,
 			silent: true,

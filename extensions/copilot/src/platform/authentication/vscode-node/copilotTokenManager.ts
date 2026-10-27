@@ -151,7 +151,7 @@ export class VSCodeCopilotTokenManager extends BaseCopilotTokenManager {
 		}
 		if (tokenResult.kind === 'failure' && tokenResult.reason === 'HTTP401') {
 			const message =
-				'Your GitHub token is invalid. Please sign out from your GitHub account using the VS Code accounts menu and try again.';
+				'Your GitHub token is invalid. Please sign out from your GitHub account using the SKDX Code accounts menu and try again.';
 			if (!shown401Message) {
 				shown401Message = true;
 				window.showWarningMessage(message);

@@ -143,14 +143,15 @@ const electronAssetResolver = electronFeed
 export const config = {
 	version: electronVersion,
 	productAppName: product.nameLong,
-	companyName: 'Microsoft Corporation',
+	productDisplayName: product.nameShort,
+	companyName: 'SkandaDX',
 	copyright: 'Copyright (C) 2026 Microsoft. All rights reserved',
-	darwinExecutable: product.nameShort,
+	darwinExecutable: product.applicationName,
 	darwinIcon: 'resources/darwin/code.icns',
 	darwinBundleIdentifier: product.darwinBundleIdentifier,
 	darwinApplicationCategoryType: 'public.app-category.developer-tools',
-	darwinHelpBookFolder: 'VS Code HelpBook',
-	darwinHelpBookName: 'VS Code HelpBook',
+	darwinHelpBookFolder: `${product.nameShort} HelpBook`,
+	darwinHelpBookName: `${product.nameShort} HelpBook`,
 	darwinBundleDocumentTypes: [
 		...darwinBundleDocumentTypes({ 'C header file': 'h', 'C source code': 'c' }, 'c'),
 		...darwinBundleDocumentTypes({ 'Git configuration file': ['gitattributes', 'gitconfig', 'gitignore'] }, 'config'),
@@ -257,7 +258,7 @@ function getElectron(arch: string): () => NodeJS.ReadWriteStream {
 		};
 
 		return vfs.src('package.json')
-			.pipe(jsonEditor({ name: product.nameShort }))
+			.pipe(jsonEditor({ name: process.platform === 'darwin' ? product.nameShort : product.applicationName }))
 			.pipe(electron(electronOpts))
 			.pipe(filter(['**', '!**/app/package.json']))
 			.pipe(vfs.dest('.build/electron'));

@@ -37,13 +37,13 @@ export function getNodeCompileCachePaths(platform: string, outputDirectory: stri
 	if (platform === 'darwin') {
 		const applicationRoot = path.join(outputDirectory, `${product.nameLong}.app`);
 		return {
-			application: path.join(applicationRoot, 'Contents', 'MacOS', product.nameShort),
+			application: path.join(applicationRoot, 'Contents', 'MacOS', product.applicationName),
 			cacheDirectory: path.join(applicationRoot, 'Contents', 'Resources', 'app', 'node-compile-cache')
 		};
 	}
 
 	const application = platform === 'win32'
-		? path.join(outputDirectory, `${product.nameShort}.exe`)
+		? path.join(outputDirectory, `${product.applicationName}.exe`)
 		: path.join(outputDirectory, product.applicationName);
 
 	return {

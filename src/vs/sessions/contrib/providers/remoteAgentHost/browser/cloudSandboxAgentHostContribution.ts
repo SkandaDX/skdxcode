@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { CancellationToken } from '../../../../../base/common/cancellation.js';
 import { raceCancellationError } from '../../../../../base/common/async.js';
 import { Codicon } from '../../../../../base/common/codicons.js';
@@ -59,7 +61,7 @@ const CLOUD_SANDBOX_CONNECTION_LABELS: IAgentHostConnectionLabels = {
 	reconnecting: localize('cloudSandbox.reconnecting', "Reconnecting..."),
 	reconnectingIn: seconds => localize('cloudSandbox.reconnectingIn', "Reconnecting in {0}s", seconds),
 	incompatibleTitle: localize('cloudSandbox.incompatibleTitle', "Cannot Connect to the Environment"),
-	incompatible: localize('cloudSandbox.incompatible', "This environment is incompatible with this version of Visual Studio Code."),
+	incompatible: localize('cloudSandbox.incompatible', "This environment is incompatible with this version of {0}.", product.nameShort),
 };
 
 export interface ICloudSandboxProvisionedSession extends ICloudSandboxCreatedSession {

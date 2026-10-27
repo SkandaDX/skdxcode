@@ -35,10 +35,7 @@ interface IMissionControlHostOptions {
 }
 
 export function getMissionControlEnvironmentName(product: IProductService, machineName = hostname()): string {
-	const applicationName = product.quality === 'stable' ? 'VS Code'
-		: product.quality === 'insider' ? 'VS Code Insiders'
-			: product.nameShort === 'Code - OSS' || product.nameShort === 'Code - OSS Dev' ? 'VS Code OSS' : product.nameShort;
-	return `${machineName.replace(/\.local$/i, '')} (${applicationName})`;
+	return `${machineName.replace(/\.local$/i, '')} (${product.nameShort})`;
 }
 
 /** Entry-owned adapter from the native runtime graph to the registration lifecycle. */

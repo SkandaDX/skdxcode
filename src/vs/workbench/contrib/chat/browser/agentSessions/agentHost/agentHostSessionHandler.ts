@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../../platform/product/common/product.js';
+
 import { isMessageHiddenFromTranscript, isMessageRequestHiddenFromTranscript, readMessageSystemInitiatedLabel, withMessageHiddenFromTranscript, readAgentMessageRoundTripMetadata } from '../../../../../../platform/agentHost/common/meta/agentMessageMeta.js';
 import { withoutAgentMessageDelegationMeta } from '../../../../../../platform/agentHost/common/meta/agentMessageDelegationMeta.js';
 import { readUsageInfoMeta, readAgentContextUsage } from '../../../../../../platform/agentHost/common/meta/agentUsageMeta.js';
@@ -2124,7 +2126,7 @@ export class AgentHostSessionHandler extends Disposable implements IChatSessionC
 		}
 		if (error.errorType === 'CodexThreadInUse') {
 			return {
-				message: localize('agentHost.codexThreadInUse', "{0} Then send your message again in VS Code. Your message has not been sent.", codexWriterLockMessage()),
+				message: localize('agentHost.codexThreadInUse', "{0} Then send your message again in {1}. Your message has not been sent.", codexWriterLockMessage(), product.nameShort),
 				isExpectedError: true,
 			};
 		}

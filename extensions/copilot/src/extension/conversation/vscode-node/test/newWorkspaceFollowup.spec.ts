@@ -3,9 +3,46 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Uri } from 'vscode';
-import { expect, suite, test } from 'vitest';
-import { getFileCreationProgressMessage, isUriContained, resolveProjectFileUri } from '../newWorkspaceFollowup';
+import { Uri, workspace } from 'vscode';
+import { afterEach, expect, suite, test, vi } from 'vitest';
+import { getFileCreationProgressMessage, isUriContained, resolveProjectFileUri, updateAiGeneratedWorkspacesFile } from '../newWorkspaceFollowup';
+
+vi.mock('vscode', async () => ({
+	...await import('../../../../vscodeTypes'),
+	workspace: {
+		fs: { createDirectory: vi.fn(), stat: vi.fn(), readFile: vi.fn(), writeFile: vi.fn() },
+	},
+}));
+
+suite('generated workspace history storage', () => {
+	afterEach(() => {
+		vi.restoreAllMocks();
+		vi.clearAllMocks();
+	});
+
+	test.each([false, true])('uses extension storage and preserves existing history (existing: %s)', async existing => {
+		const storage = Uri.file('/isolated-skdx-profile/globalStorage/github.copilot-chat');
+		const historyFile = Uri.joinPath(storage, 'aiGeneratedWorkspaces.json');
+		const createdWorkspace = Uri.file('/projects/new-project');
+		const previous = existing ? ['file:///projects/previous-project'] : [];
+		const createDirectory = vi.spyOn(workspace.fs, 'createDirectory').mockResolvedValue();
+		vi.spyOn(workspace.fs, 'stat').mockImplementation(async () => {
+			if (!existing) {
+				throw new Error('File not found');
+			}
+			return { type: 1, ctime: 0, mtime: 0, size: 0 };
+		});
+		vi.spyOn(workspace.fs, 'readFile').mockResolvedValue(Buffer.from(JSON.stringify(previous)));
+		const writeFile = vi.spyOn(workspace.fs, 'writeFile').mockResolvedValue();
+
+		await updateAiGeneratedWorkspacesFile(createdWorkspace, storage);
+
+		expect({
+			directories: createDirectory.mock.calls.map(([uri]) => uri.toString()),
+			writes: writeFile.mock.calls.map(([uri, content]) => [uri.toString(), JSON.parse(Buffer.from(content).toString())]),
+		}).toEqual({ directories: [storage.toString()], writes: [[historyFile.toString(), [...previous, createdWorkspace.toString()]]] });
+	});
+});
 
 suite('workspace creation notification security', () => {
 	test('preserves file targets but does not turn their names into progress links', () => {

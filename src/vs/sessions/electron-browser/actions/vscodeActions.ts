@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../platform/product/common/product.js';
+
 import { Codicon } from '../../../base/common/codicons.js';
 import { getWindowId } from '../../../base/browser/dom.js';
 import { mainWindow } from '../../../base/browser/window.js';
@@ -95,7 +97,7 @@ export class OpenVSCodeWindowAction extends Action2 {
 	constructor() {
 		super({
 			id: OpenVSCodeWindowAction.ID,
-			title: localize2('openVSCodeWindow', 'Open VS Code Window'),
+			title: localize2('openVSCodeWindow', "Open {0} Window", product.nameShort),
 			f1: true,
 			keybinding: {
 				primary: KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KeyA,
@@ -126,7 +128,7 @@ export class ReturnToVSCodeEditorAction extends Action2 {
 	constructor() {
 		super({
 			id: RETURN_TO_VSCODE_EDITOR_COMMAND_ID,
-			title: localize2('returnToVSCodeEditor', 'Return to VS Code Editor'),
+			title: localize2('returnToVSCodeEditor', "Return to {0} Editor", product.nameShort),
 		});
 	}
 
@@ -141,7 +143,7 @@ export class ShouldShowReturnToVSCodeEditorAction extends Action2 {
 	constructor() {
 		super({
 			id: SHOULD_SHOW_RETURN_TO_VSCODE_EDITOR_COMMAND_ID,
-			title: localize2('shouldShowReturnToVSCodeEditor', 'Check Whether to Show Return to VS Code Editor'),
+			title: localize2('shouldShowReturnToVSCodeEditor', "Check Whether to Show Return to {0} Editor", product.nameShort),
 		});
 	}
 

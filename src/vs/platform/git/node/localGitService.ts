@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../product/common/product.js';
+
 import * as cp from 'child_process';
 import { rm } from 'fs/promises';
 import { CancellationError } from '../../../base/common/errors.js';
@@ -31,7 +33,7 @@ export class LocalGitService implements ILocalGitService {
 			const major = Number(match?.groups?.major);
 			const minor = Number(match?.groups?.minor);
 			if (!(major > 2 || (major === 2 && minor >= 31))) {
-				throw new Error(localize('gitAuthenticationRequiresNewerGit', "VS Code GitHub authentication requires Git 2.31 or later. Update Git and retry."));
+				throw new Error(localize('gitAuthenticationRequiresNewerGit', "{0} GitHub authentication requires Git 2.31 or later. Update Git and retry.", product.nameShort));
 			}
 			this._supportsAuthenticationEnvironment = true;
 		}

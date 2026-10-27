@@ -175,11 +175,11 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
 			version += '-' + quality;
 		}
 
-		const name = product.nameShort;
+		const name = platform === 'darwin' ? product.nameShort : product.applicationName;
 		const packageJsonUpdates: Record<string, unknown> = { name, version };
 
 		if (platform === 'linux') {
-			packageJsonUpdates.desktopName = `${product.applicationName}.desktop`;
+			packageJsonUpdates.desktopName = `${product.linuxDesktopName}.desktop`;
 		}
 
 		let packageJsonContents: string;
@@ -346,8 +346,8 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
 		} else if (platform === 'darwin') {
 			const shortcut = gulp.src('resources/darwin/bin/code.sh')
 				.pipe(replace('@@APPNAME@@', product.applicationName))
-				.pipe(replace('@@NAME@@', product.nameShort))
-				.pipe(rename('bin/code'));
+				.pipe(replace('@@NAME@@', product.applicationName))
+				.pipe(rename(`bin/${product.applicationName}`));
 			const policyDest = gulp.src('.build/policies/darwin/**', { base: '.build/policies/darwin' })
 				.pipe(rename(f => f.dirname = `policies/${f.dirname}`));
 			all = es.merge(all, shortcut, policyDest);
@@ -388,12 +388,12 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
 
 			if (versionedResourcesFolder) {
 				result = es.merge(result, gulp.src('resources/win32/versioned/bin/code.cmd', { base: 'resources/win32/versioned' })
-					.pipe(replace('@@NAME@@', product.nameShort))
+					.pipe(replace('@@NAME@@', product.applicationName))
 					.pipe(replace('@@VERSIONFOLDER@@', versionedResourcesFolder))
 					.pipe(rename(function (f) { f.basename = product.applicationName; })));
 
 				result = es.merge(result, gulp.src('resources/win32/versioned/bin/code.sh', { base: 'resources/win32/versioned' })
-					.pipe(replace('@@NAME@@', product.nameShort))
+					.pipe(replace('@@NAME@@', product.applicationName))
 					.pipe(replace('@@PRODNAME@@', product.nameLong))
 					.pipe(replace('@@VERSION@@', version))
 					.pipe(replace('@@COMMIT@@', String(commit)))
@@ -404,11 +404,11 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
 					.pipe(rename(function (f) { f.basename = product.applicationName; f.extname = ''; })));
 			} else {
 				result = es.merge(result, gulp.src('resources/win32/bin/code.cmd', { base: 'resources/win32' })
-					.pipe(replace('@@NAME@@', product.nameShort))
+					.pipe(replace('@@NAME@@', product.applicationName))
 					.pipe(rename(function (f) { f.basename = product.applicationName; })));
 
 				result = es.merge(result, gulp.src('resources/win32/bin/code.sh', { base: 'resources/win32' })
-					.pipe(replace('@@NAME@@', product.nameShort))
+					.pipe(replace('@@NAME@@', product.applicationName))
 					.pipe(replace('@@PRODNAME@@', product.nameLong))
 					.pipe(replace('@@VERSION@@', version))
 					.pipe(replace('@@COMMIT@@', String(commit)))
@@ -420,23 +420,28 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
 
 			result = es.merge(result, gulp.src('resources/win32/VisualElementsManifest.xml', { base: 'resources/win32' })
 				.pipe(replace('@@VERSIONFOLDER@@', versionedResourcesFolder ? `${versionedResourcesFolder}\\` : ''))
-				.pipe(rename(product.nameShort + '.VisualElementsManifest.xml')));
+				.pipe(rename(product.applicationName + '.VisualElementsManifest.xml')));
 
 			result = es.merge(result, gulp.src('.build/policies/win32/**', { base: '.build/policies/win32' })
 				.pipe(rename(f => f.dirname = `policies/${f.dirname}`)));
 
 			if (quality === 'stable' || quality === 'insider') {
+				const appxPublisher = process.env['SKDX_APPX_PUBLISHER'];
+				if (!appxPublisher) {
+					throw new Error('Windows APPX packaging requires SKDX_APPX_PUBLISHER matching a legitimate signing certificate.');
+				}
 				result = es.merge(result, gulp.src('.build/win32/appx/**', { base: '.build/win32' }));
 				const rawVersion = version.replace(/-\w+$/, '').split('.');
 				const appxVersion = `${rawVersion[0]}.0.${rawVersion[1]}.${rawVersion[2]}`;
 				result = es.merge(result, gulp.src('resources/win32/appx/AppxManifest.xml', { base: '.' })
 					.pipe(replace('@@AppxPackageName@@', product.win32AppUserModelId))
+					.pipe(replace('@@AppxPublisher@@', appxPublisher))
 					.pipe(replace('@@AppxPackageVersion@@', appxVersion))
 					.pipe(replace('@@AppxPackageDisplayName@@', product.nameLong))
 					.pipe(replace('@@AppxPackageDescription@@', product.win32NameVersion))
 					.pipe(replace('@@ApplicationIdShort@@', product.win32RegValueName))
-					.pipe(replace('@@ApplicationExe@@', product.nameShort + '.exe'))
-					.pipe(replace('@@FileExplorerContextMenuID@@', quality === 'stable' ? 'OpenWithCode' : 'OpenWithCodeInsiders'))
+					.pipe(replace('@@ApplicationExe@@', product.applicationName + '.exe'))
+					.pipe(replace('@@FileExplorerContextMenuID@@', product.win32RegValueName))
 					.pipe(replace('@@FileExplorerContextMenuCLSID@@', (product as { win32ContextMenu?: Record<string, { clsid: string }> }).win32ContextMenu![arch].clsid))
 					.pipe(replace('@@FileExplorerContextMenuDLL@@', `${quality === 'stable' ? 'code' : 'code_insider'}_explorer_command_${arch}.dll`))
 					.pipe(rename(f => f.dirname = `appx/manifest`)));

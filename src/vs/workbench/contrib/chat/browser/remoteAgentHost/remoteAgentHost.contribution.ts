@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import { localize } from '../../../../../nls.js';
 import { RunOnceScheduler, Throttler } from '../../../../../base/common/async.js';
 import { Disposable } from '../../../../../base/common/lifecycle.js';
@@ -185,7 +187,7 @@ Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration).regis
 	properties: {
 		[missionControlEnabled]: {
 			type: 'boolean',
-			description: localize('missionControlEnabled', "Register the native Agent Host as a discoverable Mission Control environment so other clients can connect through Azure Web PubSub. Local VS Code continues using local IPC. Remote clients receive trusted-owner access including sessions, tools, and workspace resources. Native session actions are mirrored to Mission Control for catalog/history storage; conversation content is not end-to-end encrypted."),
+			description: localize('missionControlEnabled', "Register the native Agent Host as a discoverable Mission Control environment so other clients can connect through Azure Web PubSub. Local {0} continues using local IPC. Remote clients receive trusted-owner access including sessions, tools, and workspace resources. Native session actions are mirrored to Mission Control for catalog/history storage; conversation content is not end-to-end encrypted.", product.nameShort),
 			default: false,
 			scope: ConfigurationScope.APPLICATION,
 			restricted: true,

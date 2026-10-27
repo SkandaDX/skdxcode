@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../../platform/product/common/product.js';
+
 import './media/customizationMigrationDashboard.css';
 import * as DOM from '../../../../../base/browser/dom.js';
 import { Button } from '../../../../../base/browser/ui/button/button.js';
@@ -313,7 +315,7 @@ export class CustomizationMigrationDashboard extends Disposable {
 			this.allMigrationsComplete
 				? localize('migrationsCompletedDescription', "Your customizations use supported formats and locations.")
 				: supportsAgentMigration
-					? localize('migrationsDescriptionWithAgent', "Some of your agent customizations need an update to keep working. Use Migrate to have VS Code update selected customizations, or Migrate with Agent for a guided migration in chat. Agent migration uses credits.")
+					? localize('migrationsDescriptionWithAgent', "Some of your agent customizations need an update to keep working. Use Migrate to have {0} update selected customizations, or Migrate with Agent for a guided migration in chat. Agent migration uses credits.", product.nameShort)
 					: localize('migrationsDescription', "Some of your agent customizations need an update to keep working. Review and migrate them to the new formats and locations."),
 			overview.hasIgnoredGroups === true,
 			supportsAgentMigration ? () => {

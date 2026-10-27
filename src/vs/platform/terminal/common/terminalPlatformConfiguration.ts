@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../product/common/product.js';
+
 import { Codicon, getAllCodicons } from '../../../base/common/codicons.js';
 import { IJSONSchema, IJSONSchemaMap } from '../../../base/common/jsonSchema.js';
 import { OperatingSystem, Platform, PlatformToString } from '../../../base/common/platform.js';
@@ -394,7 +396,7 @@ const terminalPlatformConfiguration: IConfigurationNode = {
 		},
 		[TerminalSettingId.InheritEnv]: {
 			scope: ConfigurationScope.APPLICATION,
-			description: localize('terminal.integrated.inheritEnv', "Whether new shells should inherit their environment from VS Code, which may source a login shell to ensure $PATH and other development variables are initialized. This has no effect on Windows."),
+			description: localize('terminal.integrated.inheritEnv', "Whether new shells should inherit their environment from {0}, which may source a login shell to ensure $PATH and other development variables are initialized. This has no effect on Windows.", product.nameShort),
 			type: 'boolean',
 			default: true
 		},

@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import product from '../../../../platform/product/common/product.js';
+
 import { CancellationToken } from '../../../../base/common/cancellation.js';
 import { Disposable } from '../../../../base/common/lifecycle.js';
 import { autorun } from '../../../../base/common/observable.js';
@@ -167,7 +169,7 @@ export class SlashCommandHandler extends Disposable implements IChatSubmitReques
 
 		this._slashCommands.push({
 			command: 'vscode-pet',
-			detail: localize('slashCommand.vscodePet', "Toggle an interactive VS Code pet (Experimental)"),
+			detail: localize('slashCommand.vscodePet', "Toggle an interactive {0} pet (Experimental)", product.nameShort),
 			sortText: 'z3_vscodePet',
 			executeImmediately: true,
 			execute: () => this.chatPetService.toggle(),

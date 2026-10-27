@@ -1,9 +1,9 @@
-name: Code OSS
+name: SKDX Code
 
 on:
   pull_request:
     branches:
-      - main
+      - skdx
       - 'release/*'
 
 concurrency:
@@ -22,7 +22,7 @@ jobs:
     name: Compile & Hygiene
     runs-on: [ self-hosted, 1ES.Pool=1es-vscode-oss-ubuntu-22.04-x64, "JobId=compile-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}" ]
     steps:
-      - name: Checkout microsoft/vscode
+      - name: Checkout SKDX Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           lfs: true

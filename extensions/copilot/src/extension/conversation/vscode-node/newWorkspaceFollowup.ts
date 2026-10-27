@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import * as l10n from '@vscode/l10n';
-import { ChatResponseFileTreePart, Disposable, MarkdownString, ProgressLocation, SaveDialogOptions, Tab, TabInputText, Uri, commands, env, interactive, window, workspace } from 'vscode';
+import { ChatResponseFileTreePart, Disposable, MarkdownString, ProgressLocation, SaveDialogOptions, Tab, TabInputText, Uri, commands, interactive, window, workspace } from 'vscode';
 import { IConversationOptions } from '../../../platform/chat/common/conversationOptions';
 import { ILogService } from '../../../platform/log/common/logService';
 import { getSafeNotificationMessage } from '../../../platform/notification/common/notificationMessage';
@@ -13,7 +13,7 @@ import { NewWorkspacePreviewFileSystemProvider } from '../../intents/vscode-node
 import { NewWorkspaceTextDocumentProvider } from '../../intents/vscode-node/newWorkspaceTextDocumentProvider';
 import { listFilesInResponseFileTree } from '../../prompt/common/fileTreeParser';
 
-export function registerNewWorkspaceIntentCommand(previewContentManager: INewWorkspacePreviewContentManager, logService: ILogService, options: IConversationOptions) {
+export function registerNewWorkspaceIntentCommand(previewContentManager: INewWorkspacePreviewContentManager, logService: ILogService, options: IConversationOptions, globalStorageUri: Uri) {
 	const copilotWorkspaceProvider = new NewWorkspacePreviewFileSystemProvider(previewContentManager);
 	const githubWorkspaceProvider = new NewWorkspacePreviewFileSystemProvider(previewContentManager);
 	const copilotTextDocumentProvider = new NewWorkspaceTextDocumentProvider(previewContentManager);
@@ -31,7 +31,7 @@ export function registerNewWorkspaceIntentCommand(previewContentManager: INewWor
 			if (!parentFolder) {
 				return;
 			}
-			await createWorkspace(logService, workspaceRoot, parentFolder, fileTreePart);
+			await createWorkspace(logService, workspaceRoot, parentFolder, fileTreePart, globalStorageUri);
 		}),
 		commands.registerCommand(OpenFileCommand, async (fileTreePart: ChatResponseFileTreePart) => {
 			const pathStr = Uri.joinPath(fileTreePart.baseUri, fileTreePart.value[0].name).toString();
@@ -71,7 +71,7 @@ export function registerNewWorkspaceIntentCommand(previewContentManager: INewWor
 	);
 }
 
-async function createWorkspace(logService: ILogService, workspaceRoot: Uri | undefined, parentFolder: Uri, fileTreePart: ChatResponseFileTreePart) {
+async function createWorkspace(logService: ILogService, workspaceRoot: Uri | undefined, parentFolder: Uri, fileTreePart: ChatResponseFileTreePart, globalStorageUri: Uri) {
 	// Close out all previews since they won't properly restore
 	const tabsToClose: Tab[] = [];
 	window.tabGroups.all.forEach(group => {
@@ -109,7 +109,7 @@ async function createWorkspace(logService: ILogService, workspaceRoot: Uri | und
 				await workspace.fs.createDirectory(Uri.joinPath(fileUri, '..'));
 				await workspace.fs.writeFile(fileUri, content);
 			}
-			await updateAiGeneratedWorkspacesFile(workspaceUri);
+			await updateAiGeneratedWorkspacesFile(workspaceUri, globalStorageUri);
 		});
 
 		if (workspaceRoot && workspaceUri.fsPath.startsWith(workspaceRoot.fsPath + path.sep)) {
@@ -220,11 +220,9 @@ async function checkFileExists(filePath: Uri): Promise<boolean> {
 	}
 }
 
-async function updateAiGeneratedWorkspacesFile(workspaceUris: Uri) {
-	const aiGeneratedFilePath = getAiGeneratedWorkspacesFile();
-	if (!aiGeneratedFilePath) {
-		return;
-	}
+export async function updateAiGeneratedWorkspacesFile(workspaceUris: Uri, globalStorageUri: Uri) {
+	const aiGeneratedFilePath = Uri.joinPath(globalStorageUri, 'aiGeneratedWorkspaces.json');
+	await workspace.fs.createDirectory(globalStorageUri);
 
 	if ((await checkFileExists(aiGeneratedFilePath))) {
 		const fileContnet = await workspace.fs.readFile(aiGeneratedFilePath).then(b => { return new TextDecoder().decode(b); });
@@ -233,30 +231,5 @@ async function updateAiGeneratedWorkspacesFile(workspaceUris: Uri) {
 		await workspace.fs.writeFile(aiGeneratedFilePath, Buffer.from(JSON.stringify(workspaces, null, 2)));
 	} else {
 		await workspace.fs.writeFile(aiGeneratedFilePath, Buffer.from(JSON.stringify([workspaceUris.toString()], null, 2)));
-	}
-}
-
-function getAiGeneratedWorkspacesFile(): Uri | undefined {
-	const vscodeFolderName = env.appName.indexOf('Insider') > 0 || env.appName.indexOf('Code - OSS Dev') >= 0 ? 'Code - Insiders' : 'Code';
-	const homeDir = Uri.file(process.env.HOME || (process.env.USERPROFILE ? process.env.USERPROFILE : ''));
-	switch (process.platform) {
-		case 'darwin':
-			return Uri.joinPath(
-				homeDir,
-				'Library',
-				'Application Support',
-				vscodeFolderName,
-				'User',
-				'workspaceStorage',
-				'aiGeneratedWorkspaces.json'
-			);
-		case 'linux':
-			return Uri.joinPath(homeDir, '.config', vscodeFolderName, 'User', 'workspaceStorage', 'aiGeneratedWorkspaces.json');
-		case 'win32':
-			return process.env.APPDATA
-				? Uri.joinPath(Uri.file(process.env.APPDATA), vscodeFolderName, 'User', 'workspaceStorage', 'aiGeneratedWorkspaces.json')
-				: undefined;
-		default:
-			return;
 	}
 }

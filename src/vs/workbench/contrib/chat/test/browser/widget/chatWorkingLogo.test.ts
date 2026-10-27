@@ -303,7 +303,7 @@ suite('ChatWorkingLogo', () => {
 			maskStrokeWidths: ['4', '4', '4'],
 			maskStrokeJoins: ['round', 'round', 'round'],
 			maskTransforms: Array(3).fill('translate(6 6) scale(0.84)'),
-			renderedFills: ['currentColor', 'currentColor', 'currentColor'],
+			renderedFills: ['none', 'none', 'none'],
 			renderedGeometryMatchesStatic: true,
 			cssAnimations: 0,
 			pathChanged: true,

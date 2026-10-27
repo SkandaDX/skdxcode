@@ -153,11 +153,11 @@ export function getDevElectronPath(): string {
 
 	switch (process.platform) {
 		case 'darwin':
-			return join(buildPath, 'electron', `${product.nameLong}.app`, 'Contents', 'MacOS', `${product.nameShort}`);
+			return join(buildPath, 'electron', `${product.nameLong}.app`, 'Contents', 'MacOS', `${product.applicationName}`);
 		case 'linux':
 			return join(buildPath, 'electron', `${product.applicationName}`);
 		case 'win32':
-			return join(buildPath, 'electron', `${product.nameShort}.exe`);
+			return join(buildPath, 'electron', `${product.applicationName}.exe`);
 		default:
 			throw new Error('Unsupported platform.');
 	}
@@ -171,12 +171,12 @@ export function getBuildElectronPath(root: string): string {
 			const { major, minor } = parseVersion(packageJson.version);
 			// For macOS builds using the legacy Electron binary name, versions up to and including
 			// 1.109.x ship the executable as "Electron". From later versions onward, the executable
-			// is renamed to match product.nameShort. This check preserves compatibility with older
+			// is renamed to match product.applicationName. This check preserves compatibility with older
 			// builds; update the cutoff here only if the binary naming scheme changes again.
 			if (major === 1 && minor <= 109) {
 				return join(root, 'Contents', 'MacOS', 'Electron');
 			} else {
-				return join(root, 'Contents', 'MacOS', product.nameShort);
+				return join(root, 'Contents', 'MacOS', product.applicationName);
 			}
 		}
 		case 'linux': {
@@ -186,7 +186,7 @@ export function getBuildElectronPath(root: string): string {
 		case 'win32': {
 			const productPath = findFilePath(root, join('resources', 'app', 'product.json'));
 			const product = require(productPath);
-			return join(root, `${product.nameShort}.exe`);
+			return join(root, `${product.applicationName}.exe`);
 		}
 		default:
 			throw new Error('Unsupported platform.');
